@@ -2,6 +2,7 @@ package com.devzone.services;
 
 import com.devzone.model.Product;
 import com.devzone.util.dbConnect.DBConnection;
+import com.devzone.util.query.MaterialQueries;
 import com.devzone.util.query.ProductQueries;
 import com.devzone.util.utility.UtilityMethod;
 
@@ -10,11 +11,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProductService {
-    private static ArrayList<Product> productsData;
+    private  ArrayList<Product> productsData;
 
-    public static ArrayList<Product> loadData(){
+    public  ArrayList<Product> loadData(){
         try {
             Connection conn = DBConnection.Connect();
             ResultSet rsLoadProduct = conn.createStatement().executeQuery(ProductQueries.LOAD_DATA_QUERY);
@@ -27,7 +29,31 @@ public class ProductService {
         }
         return productsData;
     }
-
+public  ArrayList<Product> selectProduct(int ID) {
+        
+        PreparedStatement psProduct = null;
+        ResultSet rsLoadProduct = null;
+        try{
+            Connection conn = DBConnection.Connect();
+            psProduct = conn.prepareStatement(ProductQueries.SELECT_DATA_QUERY);
+            psProduct.setInt(1, ID);
+            rsLoadProduct = psProduct.executeQuery();
+            while (rsLoadProduct.next()) {
+                productsData.add(new Product(rsLoadProduct.getString(1),rsLoadProduct.getString(2),rsLoadProduct.getString(3),rsLoadProduct.getString(4),rsLoadProduct.getString(5),rsLoadProduct.getString(6),rsLoadProduct.getString(7),rsLoadProduct.getString(8),rsLoadProduct.getString(9)));
+            }
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }finally{
+            try{
+                psProduct.close();
+                rsLoadProduct.close();
+            }catch(SQLException ex){
+                ex.printStackTrace();
+            }
+            
+        }
+        return productsData;
+    }
     public boolean insertData(Product product) throws  Exception{
         PreparedStatement psProduct = null;
         boolean resultval = false;

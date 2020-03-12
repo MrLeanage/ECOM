@@ -44,7 +44,7 @@ public class OrderViewControllerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        processRequest(request, response);
         
     }
     private void loadOrder(HttpServletRequest request, HttpServletResponse response) throws Exception{

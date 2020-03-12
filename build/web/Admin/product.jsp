@@ -49,9 +49,9 @@
 
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Admin Dashboard</a>
     <ul>
-        <li ><a href="${pageContext.request.contextPath}/Order"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-        <li class="active"><a href="${pageContext.request.contextPath}/Product"><i class="icon icon-home"></i> <span>Products</span></a> </li>
-        <li ><a href="${pageContext.request.contextPath}/Material"><i class="icon icon-home"></i> <span>Product Customization</span></a> </li>
+        <li ><a href="<%=request.getContextPath()%>/Order"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+        <li class="active"><a href="<%=request.getContextPath()%>/Product"><i class="icon icon-home"></i> <span>Products</span></a> </li>
+        <li ><a href="<%=request.getContextPath()%>/Material"><i class="icon icon-home"></i> <span>Product Customization</span></a> </li>
     </ul>
 </div>
 <div id="content">
@@ -81,7 +81,36 @@
                                 <th>Action</th>
                             </tr>
                             </thead>
-                            
+                            <tbody>
+                                <%
+                                    ArrayList<Product> productList = (ArrayList<Product>) request.getAttribute("productList");
+                                    for(Product products : productList){
+                                %>
+                            <tr class="gradeX">
+                                <td><%=products.getpID()%></td>
+                                <td><img src = "${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg" height="100" width="100" ><div class="actions"> <a title="" href="#"><i class="icon-pencil"></i></a> <a class="lightbox_trigger" href="img/gallery/imgbox3.jpg"><i class="icon-search"></i></a> </div>
+                                </td>
+                                <td><%=products.getpName()%></td>
+                                <td><%=products.getpDimention()%></td>
+                                <td><%=products.getpWeight()%></td>
+                                <td><%=products.getpDescription()%></td>
+                                <td class="right"><%=products.getpCustomize()%></td>
+                                <td class="right"><%=products.getpAvailability()%></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-primary">Action</button>
+                                        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Update</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">Delete</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% }
+                                %>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -90,7 +119,7 @@
                         <h5>Form Elements</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form action="${pageContext.request.contextPath}/Product" method="post" class="form-horizontal">
+                        <form action="<%=request.getContextPath()%>/Product" method="post" class="form-horizontal">
                             <div class="control-group">
                                 <label class="control-label">Product Name</label>
                                 <div class="controls">

@@ -19,11 +19,7 @@ import java.util.logging.Logger;
 
 public class AllMaterialControllerServlet extends HttpServlet{
     private static final long serialVersionUID = 1L;
-    private MaterialService materialService;
-    public AllMaterialControllerServlet() {
-        super();
-        this.materialService = new MaterialService();
-    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -37,7 +33,7 @@ public class AllMaterialControllerServlet extends HttpServlet{
    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //this.doGet(request, response);
+        this.doGet(request, response);
         String action = request.getServletPath();
         
         
@@ -85,13 +81,11 @@ public class AllMaterialControllerServlet extends HttpServlet{
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      processRequest(request, response);
+        processRequest(request, response);
     }
     private void loadMaterials(HttpServletRequest request, HttpServletResponse response) throws Exception{
         
         //response.sendRedirect(request.getContextPath() + "/Admin/product-customize.jsp");
-       
-        
         request.getRequestDispatcher("/Admin/product-customize.jsp").forward(request,response);
 
         
