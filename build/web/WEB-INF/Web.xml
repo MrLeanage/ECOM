@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="w3.org/2001/XMLSchema-instance" xsi:schemaLocation="java.sun.com/xml/ns/j2ee java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    <!--Servlets-->
+    <servlet>
+        <servlet-name>LoginControllerServlet</servlet-name>
+        <servlet-class>com.devzone.controller.LoginControllerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderViewControllerServlet</servlet-name>
+        <servlet-class>com.devzone.controller.OrderViewControllerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductViewControllerServlet</servlet-name>
+        <servlet-class>com.devzone.controller.ProductViewControllerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AllMaterialControllerServlet</servlet-name>
+        <servlet-class>com.devzone.controller.AllMaterialControllerServlet</servlet-class>
+    </servlet>
+    <!--Servlet Mapping -->
+    <servlet-mapping>
+        <servlet-name>LoginControllerServlet</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderViewControllerServlet</servlet-name>
+        <url-pattern>/Order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductViewControllerServlet</servlet-name>
+        <url-pattern>/Product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllMaterialControllerServlet</servlet-name>
+        <url-pattern>/Material</url-pattern>
+    </servlet-mapping>
+    <!--Welcome Files-->
+    <welcome-file-list>
+        <welcome-file>/index.jsp</welcome-file>
+    </welcome-file-list>
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/error.jsp</location>
+    </error-page>
+</web-app>
