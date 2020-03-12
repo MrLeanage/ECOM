@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="w3.org/2001/XMLSchema-instance" xsi:schemaLocation="java.sun.com/xml/ns/j2ee java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+<web-app>
     <!--Servlets-->
     <servlet>
         <servlet-name>LoginControllerServlet</servlet-name>
@@ -39,7 +39,6 @@
         <welcome-file>/index.jsp</welcome-file>
     </welcome-file-list>
     <error-page>
-        <exception-type>java.lang.Exception</exception-type>
-        <location>/error.jsp</location>
+        <location>/Client/ShoppingList</location>
     </error-page>
 </web-app>

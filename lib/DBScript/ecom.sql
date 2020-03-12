@@ -21,7 +21,6 @@
 
 DROP TABLE IF EXISTS `activation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `activation` (
   `ACode` varchar(150) NOT NULL,
   `APeriod` int(11) NOT NULL,
@@ -29,7 +28,7 @@ CREATE TABLE `activation` (
   `AStartDate` varchar(11) DEFAULT NULL,
   `AEndDate` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`ACode`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +46,6 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `contactinfo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `contactinfo` (
   `CID` int(11) NOT NULL,
   `CName` varchar(45) DEFAULT NULL,
@@ -56,7 +54,7 @@ CREATE TABLE `contactinfo` (
   `CMobPhone` int(11) DEFAULT NULL,
   `CLPhone` int(11) DEFAULT NULL,
   PRIMARY KEY (`CID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +72,6 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `feedback`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `feedback` (
   `FID` int(5) unsigned zerofill NOT NULL,
   `FCusName` varchar(100) DEFAULT NULL,
@@ -85,7 +82,7 @@ CREATE TABLE `feedback` (
   `FDate` varchar(11) DEFAULT NULL,
   `FViewStatus` binary(1) DEFAULT NULL,
   PRIMARY KEY (`FID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,12 +100,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `material`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `material` (
   `MID` int(3) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `MName` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`MID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,7 +123,6 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `order`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `order` (
   `OID` int(5) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `OPID` int(5) DEFAULT NULL,
@@ -141,7 +136,7 @@ CREATE TABLE `order` (
   `OQuantity` int(11) DEFAULT NULL,
   `OStatus` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`OID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,7 +154,6 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `product`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `product` (
   `PID` int(5) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `PName` varchar(50) DEFAULT NULL,
@@ -171,7 +165,7 @@ CREATE TABLE `product` (
   `PAvailability` varchar(10) DEFAULT NULL,
   `PCustomize` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`PID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,7 +184,6 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `rating`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `rating` (
   `RID` int(5) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `RPID` int(5) unsigned zerofill DEFAULT NULL,
@@ -203,7 +196,7 @@ CREATE TABLE `rating` (
   `RStatus` binary(1) DEFAULT NULL,
   `RViewStatus` binary(1) DEFAULT NULL,
   PRIMARY KEY (`RID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -220,8 +213,6 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `trackinfo`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `trackinfo` (
   `TID` int(7) unsigned zerofill NOT NULL DEFAULT '0000000',
   `TCode` varchar(80) DEFAULT NULL,
@@ -233,7 +224,7 @@ CREATE TABLE `trackinfo` (
   `TAdPayDate` varchar(11) DEFAULT NULL,
   `TAdPayStatus` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`TID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -251,13 +242,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `user` (
   `UID` varchar(20) NOT NULL,
   `UPassword` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`UID`),
   UNIQUE KEY `UID_UNIQUE` (`UID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) 
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

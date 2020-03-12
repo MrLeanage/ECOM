@@ -32,14 +32,14 @@
             <ul class="dropdown-menu">
                 <li><a href=""><i class=""></i> </a></li>
                 <li class="divider"></li>
-                <li><a href="${pageContext.request.contextPath}/Login"><i class="icon-key"></i> Log Out</a></li>
+                <li><a href="<%=request.getContextPath()%>/Login"><i class="icon-key"></i> Log Out</a></li>
             </ul>
         </li>
         <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i></a></li>
                 <li class="divider"></li>
-                <li><a class="sInbox" title="" href="${pageContext.request.contextPath}/Order"><i class="icon-envelope"></i> New Orders</a></li>
+                <li><a class="sInbox" title="" href="<%=request.getContextPath()%>/Order"><i class="icon-envelope"></i> New Orders</a></li>
             </ul>
         </li>
     </ul>
@@ -83,12 +83,12 @@
                             </thead>
                             <tbody>
                                 <%
-                                    ArrayList<Product> productList = (ArrayList<Product>) request.getAttribute("productList");
+                                    ArrayList<Product> productList = (ArrayList<Product>)request.getAttribute("productList");
                                     for(Product products : productList){
                                 %>
                             <tr class="gradeX">
                                 <td><%=products.getpID()%></td>
-                                <td><img src = "${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg" height="100" width="100" ><div class="actions"> <a title="" href="#"><i class="icon-pencil"></i></a> <a class="lightbox_trigger" href="img/gallery/imgbox3.jpg"><i class="icon-search"></i></a> </div>
+                                <td><img src = "<%=request.getContextPath()%>/Admin/img/gallery/imgbox3.jpg" height="100" width="100" ><div class="actions"> <a title="" href="#"><i class="icon-pencil"></i></a> <a class="lightbox_trigger" href="img/gallery/imgbox3.jpg"><i class="icon-search"></i></a> </div>
                                 </td>
                                 <td><%=products.getpName()%></td>
                                 <td><%=products.getpDimention()%></td>
