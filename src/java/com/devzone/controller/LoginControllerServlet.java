@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -60,8 +61,11 @@ public class LoginControllerServlet extends HttpServlet {
 
     private void userValidate(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         UserService userServices = new UserService();
+        HttpSession session = request.getSession();
+        
         boolean resultVal = userServices.userValidation(request.getParameter("uID"), request.getParameter("uPassword"));
         if(resultVal){
+            session.setAttribute("authenticatedUser", true);
             response.sendRedirect(request.getContextPath() + "/Order");
         }else{
             request.setAttribute("uErrorMsg", "User ID or Password Invalid");
