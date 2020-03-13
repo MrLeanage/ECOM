@@ -21,6 +21,8 @@
     <servlet-mapping>
         <servlet-name>LoginControllerServlet</servlet-name>
         <url-pattern>/Login</url-pattern>
+        <url-pattern>/Login/New</url-pattern>
+        <url-pattern>/Login/Validate</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>OrderViewControllerServlet</servlet-name>
