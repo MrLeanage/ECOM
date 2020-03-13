@@ -121,7 +121,7 @@
                                 <h5>Form Elements</h5>
                             </div>
                             <div class="widget-content nopadding">
-                                <form action="<%=request.getContextPath()%>/Product/FormAction" id="productForm" method="get" class="form-horizontal">
+                                <form action="<%=request.getContextPath()%>/Product/FormAction" id="productForm" method="POST" enctype="multipart/form-data" class="form-horizontal">
                                     <div class="control-group">
                                         <label class="control-label">Product Name</label>
                                         <div class="controls">
@@ -189,9 +189,9 @@
                                         <label class="control-label">Select Images(max 3) :</label>
                                         <div class="controls">
                                             <label >Cover Image</label>
-                                            <input type="file"  name='pImage1' /><br>
-                                            <input type="file"  name='pImage2' />
-                                            <input type="file" name='pImage3' />
+                                            <input type="file"  name='pImage1' accept="image/png" required>
+                                            <input type="file"  name='pImage2' accept="image/png" required>
+                                            <input type="file" name='pImage3' accept="image/png" required>
                                         </div>
                                     </div>
                                     <div class="form-actions">
