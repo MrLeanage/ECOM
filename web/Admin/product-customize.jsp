@@ -48,7 +48,7 @@
     <ul>
         <li ><a href="${pageContext.request.contextPath}/Order"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
         <li ><a href="${pageContext.request.contextPath}/Product"><i class="icon icon-home"></i> <span>Products</span></a> </li>
-        <li class="active"><a href="${pageContext.request.contextPath}/Material"><i class="icon icon-home"></i> <span>Product Customization</span></a> </li>
+        <li class="active"><a href="${pageContext.request.contextPath}/Portfolio"><i class="icon icon-home"></i> <span>Portfolio Customization</span></a> </li>
     </ul>
 </div>
 
@@ -56,70 +56,70 @@
 
 <div id="content">
     <div id="content-header">
-        <div id="breadcrumb"> <a href="" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>  <a href="#" class="current">Product Customization</a> </div>
+        <div id="breadcrumb"> <a href="${pageContext.request.contextPath}/Order" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>  <a href="${pageContext.request.contextPath}/Portfolio" class="current">Product Customization</a> </div>
 
     </div>
     <div class="container-fluid">
 
         <hr>
         <div class="row-fluid">
-            <div class="span6">
+            <div class="span12">
                 <div class="widget-box">
                     <div class="widget-title "> <span class="icon"><i class="icon-th"></i></span>
-                        <h5>Products Color table</h5>
+                        <h5>Customize Your Portfolio</h5>
                     </div>
                     <div class="widget-content nopadding">
                         <table class="table   ">
                             <thead>
                             <tr>
-                                <th>CID</th>
-                                <th>Color</th>
-                                <th class="right">Action</th>
+                                <th>ID</th>
+                                <th>Product Name</th>
+                                <th class="right">Image 1 (Cover Image)</th>
+                                <th class="right">Image 2 </th>
+                                <th class="right">Image 3 </th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr class="gradeX">
-                                <td>C001</td>
-                                <td>Blue</td>
+                                <td>P001</td>
+                                <td>Phone Cover</td>
+                                <td>
+                                   <a> <img src="${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg" height="200" width="200" alt="" > </a>
+                                    <div class="actions"> <a title="" class="" href="#"><i class="icon-pencil"></i></a> <a class="lightbox_trigger" href="${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg"><i class="icon-search"></i></a> </div>
+                                </td>
+                                <td>
+                                   <a> <img src="${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg" height="200" width="200" alt="" > </a>
+                                    <div class="actions"> <a title="" class="" href="#"><i class="icon-pencil"></i></a> <a class="lightbox_trigger" href="${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg"><i class="icon-search"></i></a> </div>
+                                </td>
+                                <td>
+                                   <a> <img src="${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg" height="200" width="200" alt="" > </a>
+                                    <div class="actions"> <a title="" class="" href="#"><i class="icon-pencil"></i></a> <a class="lightbox_trigger" href="${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg"><i class="icon-search"></i></a> </div>
+                                </td>
                                 <td>
                                     <div class="btn-group">
-                                        <button class="btn btn-primary">Action</button>
-                                        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">Update</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Delete</a></li>
-                                        </ul>
+                                        <button class="btn btn-danger btn-mini" ><a style="color:white;" href="#"   >Delete</a></button>
                                     </div>
                                 </td>
                             </tr>
                             <tr class="gradeX">
-                                <td>C002</td>
-                                <td>Black</td>
+                                <td>P002</td>
+                                <td>Phone Cover 2 </td>
                                 <td>
-                                    <div class="btn-group">
-                                        <button class="btn btn-primary">Action</button>
-                                        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">Update</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Delete</a></li>
-                                        </ul>
-                                    </div>
+                                   <a> <img src="${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg" height="200" width="200" alt="" > </a>
+                                    <div class="actions"> <a title="" class="" href="#"><i class="icon-pencil"></i></a> <a class="lightbox_trigger" href="${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg"><i class="icon-search"></i></a> </div>
                                 </td>
-                            </tr>
-                            <tr class="gradeX">
-                                <td>C002</td>
-                                <td>Black</td>
+                                <td>
+                                   <a> <img src="${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg" height="200" width="200" alt="" > </a>
+                                    <div class="actions"> <a title="" class="" href="#"><i class="icon-pencil"></i></a> <a class="lightbox_trigger" href="${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg"><i class="icon-search"></i></a> </div>
+                                </td>
+                                <td>
+                                   <a> <img src="${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg" height="200" width="200" alt="" > </a>
+                                    <div class="actions"> <a title="" class="" href="#"><i class="icon-pencil"></i></a> <a class="lightbox_trigger" href="${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg"><i class="icon-search"></i></a> </div>
+                                </td>
                                 <td>
                                     <div class="btn-group">
-                                        <button class="btn btn-primary">Action</button>
-                                        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">Update</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#">Delete</a></li>
-                                        </ul>
+                                        <button class="btn btn-danger btn-mini" ><a style="color:white;" href="#"   >Delete</a></button>
                                     </div>
                                 </td>
                             </tr>
@@ -138,70 +138,6 @@
                                 <label class="control-label">Available Color :</label>
                                 <div class="controls">
                                     <input type="text" class="span11" placeholder="Color" />
-                                </div>
-                            </div>
-                            <div class="form-actions">
-                                <button type="submit" class="btn btn-success">Save</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="span6">
-                <div class="widget-box">
-                    <div class="widget-title "> <span class="icon"><i class="icon-th"></i></span>
-                        <h5>Products Material table</h5>
-                    </div>
-                    <div class="widget-content nopadding">
-                        <table class="table   ">
-                            <thead>
-                            <tr>
-                                <th>MID</th>
-                                <th>Product Material</th>
-                                <th class="right">Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach var="material" items="${materialList}" >
-                                <tr class="gradeX">
-                                    <td><c:out value="${material.mID}"/> </td>
-                                    <td><c:out value="${material.mName}"/></td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <button class="btn btn-primary">Action</button>
-                                            <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="edit?id=<c:out value='${material.mID}' />">Update</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="delete?id=<c:out value='${material.mID}' />">Delete</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-                <div class="widget-box">
-                    <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-                        <h5>Product Material Name</h5>
-                    </div>
-                    <div class="widget-content nopadding">
-                    <c:if test="${material == null}">
-                            <form action="insert" method="post" class="form-horizontal">
-                         </c:if>
-                        <c:if test="${material != null}">
-                            <form action="update" method="post" class="form-horizontal">
-                        </c:if>
-                        <c:if test="${material != null}">
-                            <input type="hidden" name="ID" value="<c:out value="${material.mID}"/>"/>
-                        </c:if>
-                            <div class="control-group">
-                                <label class="control-label">Material Name :</label>
-                                <div class="controls">
-                                    <input type="text" name="mName" value="<c:out value='${material.mName}' />" class="span11" placeholder="Color" />
                                 </div>
                             </div>
                             <div class="form-actions">

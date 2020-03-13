@@ -23,7 +23,7 @@ public class ProductService {
             ResultSet rsLoadProduct = conn.createStatement().executeQuery(ProductQueries.LOAD_DATA_QUERY);
 
             while (rsLoadProduct.next()) {
-                productsData.add(new Product(rsLoadProduct.getString(1), rsLoadProduct.getString(2), rsLoadProduct.getString(3), rsLoadProduct.getString(4), rsLoadProduct.getString(5), rsLoadProduct.getString(6), rsLoadProduct.getString(7), rsLoadProduct.getString(8), rsLoadProduct.getString(9), rsLoadProduct.getFloat(10), rsLoadProduct.getString(11), rsLoadProduct.getString(12), rsLoadProduct.getString(13), rsLoadProduct.getString(14)));
+                productsData.add(new Product(rsLoadProduct.getString(1), rsLoadProduct.getString(2), rsLoadProduct.getString(3), rsLoadProduct.getString(4), rsLoadProduct.getString(5), rsLoadProduct.getString(6), rsLoadProduct.getString(7), rsLoadProduct.getString(8), rsLoadProduct.getString(9), rsLoadProduct.getDouble(10), rsLoadProduct.getString(11), rsLoadProduct.getString(12), rsLoadProduct.getString(13), rsLoadProduct.getString(14)));
             }
             
         } catch (SQLException ex) {
@@ -52,11 +52,11 @@ public class ProductService {
                 productData.setpMaterial(rsLoadProduct.getString(7));
                 productData.setpAvailability(rsLoadProduct.getString(8));
                 productData.setpCustomize(rsLoadProduct.getString(9));
-                productData.setpPrice(rsLoadProduct.getFloat(10));
+                productData.setpPrice(String.valueOf(rsLoadProduct.getDouble(10)));
                 productData.setpImage1(rsLoadProduct.getString(11));
                 productData.setpImage2(rsLoadProduct.getString(12));
                 productData.setpImage3(rsLoadProduct.getString(13));
-                productData.setpCoverProduct(rsLoadProduct.getString(14));
+                productData.setpHomeProduct(rsLoadProduct.getString(14));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -87,11 +87,11 @@ public class ProductService {
             psProduct.setString(6, product.getpMaterial());
             psProduct.setString(7, product.getpAvailability());
             psProduct.setString(8, product.getpCustomize());
-            psProduct.setFloat(9, product.getpPrice());
+            psProduct.setDouble(9, product.getpPrice());
             psProduct.setString(10, product.getpImage1());
             psProduct.setString(11, product.getpImage2());
             psProduct.setString(12, product.getpImage3());
-            psProduct.setString(13, product.getpCoverProduct());
+            psProduct.setString(13, product.getpHomeProduct());
             
             
             psProduct.execute();
@@ -121,11 +121,11 @@ public class ProductService {
             psProduct.setString(6, product.getpMaterial());
             psProduct.setString(7, product.getpAvailability());
             psProduct.setString(8, product.getpCustomize());
-            psProduct.setFloat(9, product.getpPrice());
+            psProduct.setDouble(9, product.getpPrice());
             psProduct.setString(10, product.getpImage1());
             psProduct.setString(11, product.getpImage2());
             psProduct.setString(12, product.getpImage3());
-            psProduct.setString(13, product.getpCoverProduct());
+            psProduct.setString(13, product.getpHomeProduct());
             psProduct.setInt(14, UtilityMethod.seperateID(product.getpID()));
             psProduct.execute();
             // AlertPopUp.updateSuccesfully("Allowance Scheme");

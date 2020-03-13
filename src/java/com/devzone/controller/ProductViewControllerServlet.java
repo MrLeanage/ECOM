@@ -36,30 +36,27 @@ public class ProductViewControllerServlet extends HttpServlet {
             try {
 
             String action = request.getServletPath();
-                log("Hello"+action);
-                    
             switch (action) {
-            case "/Product/Add":
-                try {
-                    insertProduct(request, response);
-                } catch (Exception e) {
-                    e.printStackTrace();
+            case "/Product/FormAction":
+                
+                String formAction = request.getParameter("actionButton");
+                if(formAction.equals("Update")){
+                    try {
+                       updateProduct(request, response);
+                     }catch (Exception e) {
+                       e.printStackTrace();
+                     }
+                }else{
+                     try {
+                       insertProduct(request, response);
+                     } catch (Exception e) {
+                       e.printStackTrace();
+                     }
                 }
+                
+                
                 break;
-            case "/Product/Edit":
-                try {
-                    setUpdateProduct(request, response);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                break;
-            case "/Product/Update":
-                try {
-                    updateProduct(request, response);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                break;
+                
             case "/Product/Delete":
                 try {
                     deleteProduct(request, response);
@@ -127,11 +124,14 @@ public class ProductViewControllerServlet extends HttpServlet {
         productModel.setpName(request.getParameter("pName"));
         productModel.setpDescription(request.getParameter("pDescription"));
         productModel.setpDimention(request.getParameter("pDimention"));
+        productModel.setpPrice(request.getParameter("pPrice"));
         productModel.setpWeight(request.getParameter("pWeight"));
         productModel.setpColor(request.getParameter("pColor"));
         productModel.setpMaterial(request.getParameter("pMaterial"));
         productModel.setpAvailability(request.getParameter("pAvailability"));
         productModel.setpCustomize(request.getParameter("pCustomize"));
+        //productModel.setpHomeProduct(request.getParameter("pHomeProduct"));
+        log("image file paths"+ request.getParameter("pHomeProduct"));
         boolean resultval = productService.insertData(productModel);
         if (resultval) {
             response.sendRedirect(request.getContextPath() + "/Product");
@@ -162,7 +162,7 @@ public class ProductViewControllerServlet extends HttpServlet {
         Product product = new Product();
         product = productService.selectProduct(request.getParameter("actionID"));
         request.setAttribute("pID", product.getpID());
-        getServletContext().setAttribute("pName", product.getpName());
+        request.setAttribute("pName", product.getpName());
         request.setAttribute("pDescription", product.getpDescription());
         request.setAttribute("pDimention", product.getpDimention());
         request.setAttribute("pWeight", product.getpWeight());
@@ -174,15 +174,17 @@ public class ProductViewControllerServlet extends HttpServlet {
         request.setAttribute("pImage1", product.getpImage1());
         request.setAttribute("pImage2", product.getpImage2());
         request.setAttribute("pImage3", product.getpImage3());
-        request.setAttribute("pCoverProduct", product.getpCoverProduct());
+        request.setAttribute("pHomeProduct", product.getpHomeProduct());
         log("Executed to end"+product.getpName());
+        
         request.getRequestDispatcher("/Product").forward(request, response);
     }
 
     private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         Product productModel = new Product();
-
+        log(request.getParameter("pPrice"));
+        log(request.getParameter("pHomeProduct"));
         ProductService productService = new ProductService();
         productModel.setpID(request.getParameter("selectionID"));
         productModel.setpName(request.getParameter("pName"));
@@ -193,7 +195,8 @@ public class ProductViewControllerServlet extends HttpServlet {
         productModel.setpMaterial(request.getParameter("pMaterial"));
         productModel.setpAvailability(request.getParameter("pAvailability"));
         productModel.setpCustomize(request.getParameter("pCustomize"));
-        
+        productModel.setpPrice("50");
+        //productModel.setpHomeProduct(request.getParameter("pHomeProduct"));
         productService.updateData(productModel);
         response.sendRedirect(request.getContextPath() + "/Product");
 

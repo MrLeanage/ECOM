@@ -51,12 +51,12 @@
     <ul>
         <li ><a href="<%=request.getContextPath()%>/Order"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
         <li class="active"><a href="<%=request.getContextPath()%>/Product"><i class="icon icon-home"></i> <span>Products</span></a> </li>
-        <li ><a href="<%=request.getContextPath()%>/Material"><i class="icon icon-home"></i> <span>Product Customization</span></a> </li>
+        <li ><a href="<%=request.getContextPath()%>/Portfolio"><i class="icon icon-home"></i> <span>Portfolio Customization</span></a> </li>
     </ul>
 </div>
 <div id="content">
     <div id="content-header">
-        <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="current">Products</a> </div>
+        <div id="breadcrumb"> <a href="<%=request.getContextPath()%>/Order" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="<%=request.getContextPath()%>/Product" class="current">Products</a> </div>
     </div>
     <div class="container-fluid">
         <hr>
@@ -76,6 +76,7 @@
                                 <th>Dimension</th>
                                 <th>Weight</th>
                                 <th>Description</th>
+                                <th>Price</th>
                                 <th>Colors</th>
                                 <th>Material</th>
                                 <th>Customize</th>
@@ -88,27 +89,22 @@
                                     ArrayList<Product> productList = (ArrayList<Product>)request.getAttribute("productList");
                                     for(Product products : productList){
                                 %>
-                            <tr class="gradeX">
+                                <tr class="gradeX" style="cursor:pointer; ">
                                 <td><%=products.getpID()%></td>
-                                <td><img src = "${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg" height="50" width="50" ><div class="actions"> <a class="lightbox_trigger" href="${pageContext.request.contextPath}/img/gallery/imgbox3.jpg"><i class="icon-search"></i></a> </div>
+                                <td><img src = "${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg" height="50" width="50" ><div class="actions"> <a class="lightbox_trigger" href="${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg"><i class="icon-search"></i></a> </div>
                                 </td>
                                 <td><%=products.getpName()%></td>
                                 <td><%=products.getpDimention()%></td>
                                 <td><%=products.getpWeight()%></td>
                                 <td><%=products.getpDescription()%></td>
+                                <td><%=products.getpPrice()%></td>
                                 <td><%=products.getpColor()%></td>
                                 <td><%=products.getpMaterial()%></td>
                                 <td ><%=products.getpCustomize()%></td>
                                 <td ><%=products.getpAvailability()%></td>
                                 <td>
                                     <div class="btn-group">
-                                        <button class="btn btn-primary" >Action</button>
-                                        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <li ><a href="<%=request.getContextPath()%>/Product/Edit?actionID=<%=products.getpID()%>" name="action" >Edit</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="<%=request.getContextPath()%>/Product/Delete?actionID=<%=products.getpID()%>" name="action"  >Delete</a></li>
-                                        </ul>
+                                        <button class="btn btn-danger btn-mini" ><a style="color:white;" href="<%=request.getContextPath()%>/Product/Delete?actionID=<%=products.getpID()%>" name="action"  >Delete</a></button>
                                     </div>
                                 </td>
                             </tr>
@@ -123,36 +119,42 @@
                         <h5>Form Elements</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form action="<%=request.getContextPath()%>/<%%>Product/Update" id="productForm" method="post" class="form-horizontal">
+                        <form action="<%=request.getContextPath()%>/Product/FormAction" id="productForm" method="get" class="form-horizontal">
                             <div class="control-group">
                                 <label class="control-label">Product Name</label>
                                 <div class="controls">
-                                    <input type="text" name="pName" id="name" value="<%=(request.getParameter("pName") == null) ? request.getParameter("pName") : ""%>" style="width: 90%">
+                                    <input type="text" name="pName" id="name"  required style="width: 90%">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Product Dimension</label>
                                 <div class="controls">
-                                    <input type="text" name="pDimention" id="dimention" value="<%=(request.getParameter("pDimention") != null) ? request.getParameter("pDimention") : ""%>" style="width: 90%">
+                                    <input type="text" name="pDimention" id="dimention" required  style="width: 90%">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Product Weight</label>
                                 <div class="controls">
-                                    <input type="text" name="pWeight" id="weight" value="<%=(request.getParameter("pWeight") != null) ? request.getParameter("pWeight") : ""%>" style="width: 90%">
+                                    <input type="text" name="pWeight" id="weight" required style="width: 90%">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Item Product Description</label>
                                 <div class="controls">
-                                    <textarea name="pDescription" id="description" class="span11" style="width: 90%"><%=(request.getParameter("pDescription") != null) ? request.getParameter("pDescription") : ""%></textarea>
+                                    <textarea name="pDescription" id="description" required class="span11" style="width: 90%"></textarea>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Item Product Price</label>
+                                <div class="controls">
+                                    <input type="number" name="pPrice" id="price" required class="span11" style="width: 90%">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Customizable?</label>
                                 <div class="controls">
                                     <select name='pCustomize' id="customize">
-                                        <option value="<%=(request.getParameter("pCustomize") != null) ? request.getParameter("pCustomize") : ""%>"></option>
+                                        <option ></option>
                                         <option selected >Yes</option>
                                         <option >No</option>
                                     </select>
@@ -161,20 +163,20 @@
                             <div class="control-group">
                                 <label class="control-label">Select Available Colors</label>
                                 <div class="controls">
-                                    <input type="text" name="pColor" id="color" value="<%=(request.getParameter("pColor") != null) ? request.getParameter("pColor") : ""%>" style="width: 90%">
+                                    <input type="text" name="pColor" id="color" required style="width: 90%">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Select Available Materials</label>
                                 <div class="controls">
-                                    <input type="text" name="pMaterial" id="material" value="<%=(request.getParameter("pMaterial") != null) ? request.getParameter("pMaterial") : ""%>" style="width: 90%">
+                                    <input type="text" name="pMaterial" id="material" required style="width: 90%">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Set Availability Status</label>
                                 <div class="controls">
-                                    <select name='pAvailability' id="status">
-                                        <option ><%=(request.getParameter("pAvailability") != null) ? request.getParameter("pAvailability") : ""%></option>
+                                    <select name='pAvailability' required id="status">
+                                        
                                         <option>Available</option>
                                         <option>Out of Order</option>
                                         <option>Not Available</option>
@@ -182,26 +184,25 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Select Images(max 5) :</label>
+                                <label class="control-label">Select Images(max 3) :</label>
                                 <div class="controls">
-                                    <input type="file" name='pImage1' />
-                                    <input type="file" name='pImage2' />
+                                    <label >Cover Image</label>
+                                    <input type="file"  name='pImage1' /><br>
+                                    <input type="file"  name='pImage2' />
                                     <input type="file" name='pImage3' />
                                 </div>
                             </div>
                             <div class="form-actions">
                                 
-                               <input type="text" name="selectionID" id="selectionID">
+                               <input type="hidden" name="selectionID" id="selectionID">
                                
-                               <button type="submit" class="btn btn-success"  id="addButton">Add</button>
-                               
-                              
-                                
-                                                                
+                               <button type="submit" class="btn btn-success" name="actionButton" value="" id="actionButton">Add</button>
+                                                               
                             </div>
                         </form>
                     </div>
                 </div>
+                            
             </div>
 
         </div>
@@ -225,15 +226,14 @@
             document.getElementById("dimention").value =  this.cells[3].innerHTML;
             document.getElementById("weight").value =  this.cells[4].innerHTML;
             document.getElementById("description").value =  this.cells[5].innerHTML;
-            document.getElementById("color").value =  this.cells[6].innerHTML;
-            document.getElementById("material").value =  this.cells[7].innerHTML;
-            document.getElementById("customize").value =  this.cells[8].innerHTML;
-            document.getElementById("status").value =  this.cells[9].innerHTML;
+            document.getElementById("price").value =  this.cells[6].innerHTML;
+            document.getElementById("color").value =  this.cells[7].innerHTML;
+            document.getElementById("material").value =  this.cells[8].innerHTML;
+            document.getElementById("customize").value =  this.cells[9].innerHTML;
+            document.getElementById("status").value =  this.cells[10].innerHTML;
             document.getElementById("selectionID").value = this.cells[0].innerHTML;
-           // $("#addButton").html("Update");
-           $("#addButton").attr("value", "Update").html("Update")
-           
-           
+            //$("#actionButton").html("Update");
+            $("#actionButton").attr("value", "Update").html("Update");
         }
     }
     

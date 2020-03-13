@@ -33,7 +33,7 @@
                 <li><a href="<%=request.getContextPath()%>/Admin/Login"><i class="icon-key"></i> Log Out</a></li>
             </ul>
         </li>
-        <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+        <li class="dropdown" id="menu-messages"><a href="3" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i></a></li>
                 <li class="divider"></li>
@@ -44,11 +44,11 @@
 </div>
 <!--close-top-Header-menu-->
 <!--sidebar-menu-->
-<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Admin Dashboard</a>
+<div id="sidebar"><a href="${pageContext.request.contextPath}/Order" class="visible-phone"><i class="icon icon-home"></i> Admin Dashboard</a>
     <ul>
         <li class="active"><a href="${pageContext.request.contextPath}/Order"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
         <li ><a href="${pageContext.request.contextPath}/Product"><i class="icon icon-home"></i> <span>Products</span></a> </li>
-        <li ><a href="${pageContext.request.contextPath}/Material"><i class="icon icon-home"></i> <span>Product Customization</span></a> </li>
+        <li ><a href="${pageContext.request.contextPath}/Portfolio"><i class="icon icon-home"></i> <span>Portfolio Customization</span></a> </li>
     </ul>
 </div>
 <!--sidebar-menu-->
@@ -57,7 +57,7 @@
 <div id="content">
     <!--breadcrumbs-->
     <div id="content-header">
-        <div id="breadcrumb"> <a href="<%=request.getContextPath()%>/Order" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
+        <div id="breadcrumb"> <a href="${pageContext.request.contextPath}/Order" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
     </div>
     <!--End-breadcrumbs-->
 

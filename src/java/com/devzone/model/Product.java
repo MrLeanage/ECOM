@@ -12,13 +12,13 @@ public class Product {
     private String pMaterial = null;
     private String pAvailability = null;
     private String pCustomize = null;
-    private Float pPrice = null;
+    private Double pPrice = null;
     private String pImage1 = null;
     private String pImage2 = null;
     private String pImage3 = null;
-    private String pCoverProduct = null;
+    private String pHomeProduct = null;
 
-    public Product(String pID, String pName, String pDescription, String pDimention, String pWeight, String pColor, String pMaterial, String pAvailability, String pCustomize, Float pPrice, String pImage1, String pImage2, String pImage3, String pCoverProduct) {
+    public Product(String pID, String pName, String pDescription, String pDimention, String pWeight, String pColor, String pMaterial, String pAvailability, String pCustomize, Double pPrice, String pImage1, String pImage2, String pImage3, String pHomeProduct) {
         this.pID = UtilityMethod.addPrefix("P", pID);
         this.pName = pName;
         this.pDescription = pDescription;
@@ -32,7 +32,7 @@ public class Product {
         this.pImage1 = pImage1;
         this.pImage2 = pImage2;
         this.pImage3 = pImage3;
-        this.pCoverProduct = pCoverProduct;
+        this.pHomeProduct = pHomeProduct;
         
     }
     public Product(){
@@ -111,12 +111,15 @@ public class Product {
         this.pCustomize = pCustomize;
     }
 
-    public Float getpPrice() {
+    public Double getpPrice() {
         return pPrice;
     }
 
-    public void setpPrice(Float pPrice) {
-        this.pPrice = pPrice;
+    public void setpPrice(String pPrice) {
+        if(!pPrice.equals("null") || !pPrice.equals("")){
+            this.pPrice = Double.valueOf(pPrice);
+        }
+        this.pPrice = Double.parseDouble(pPrice);
     }
 
     public String getpImage1() {
@@ -143,12 +146,12 @@ public class Product {
         this.pImage3 = pImage3;
     }
 
-    public String getpCoverProduct() {
-        return pCoverProduct;
+    public String getpHomeProduct() {
+        return pHomeProduct;
     }
 
-    public void setpCoverProduct(String pCoverProduct) {
-        this.pCoverProduct = pCoverProduct;
+    public void setpHomeProduct(String pHomeProduct) {
+        this.pHomeProduct = pHomeProduct;
     }
     
 }
