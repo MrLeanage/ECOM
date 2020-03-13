@@ -12,8 +12,13 @@ public class Product {
     private String pMaterial = null;
     private String pAvailability = null;
     private String pCustomize = null;
+    private Float pPrice = null;
+    private String pImage1 = null;
+    private String pImage2 = null;
+    private String pImage3 = null;
+    private String pCoverProduct = null;
 
-    public Product(String pID, String pName, String pDescription, String pDimention, String pWeight, String pColor, String pMaterial, String pAvailability, String pCustomize) {
+    public Product(String pID, String pName, String pDescription, String pDimention, String pWeight, String pColor, String pMaterial, String pAvailability, String pCustomize, Float pPrice, String pImage1, String pImage2, String pImage3, String pCoverProduct) {
         this.pID = UtilityMethod.addPrefix("P", pID);
         this.pName = pName;
         this.pDescription = pDescription;
@@ -23,6 +28,12 @@ public class Product {
         this.pMaterial = pMaterial;
         this.pAvailability = pAvailability;
         this.pCustomize = pCustomize;
+        this.pPrice = pPrice;
+        this.pImage1 = pImage1;
+        this.pImage2 = pImage2;
+        this.pImage3 = pImage3;
+        this.pCoverProduct = pCoverProduct;
+        
     }
     public Product(){
         
@@ -99,4 +110,45 @@ public class Product {
     public void setpCustomize(String pCustomize) {
         this.pCustomize = pCustomize;
     }
+
+    public Float getpPrice() {
+        return pPrice;
+    }
+
+    public void setpPrice(Float pPrice) {
+        this.pPrice = pPrice;
+    }
+
+    public String getpImage1() {
+        return pImage1;
+    }
+
+    public void setpImage1(String pImage1) {
+        this.pImage1 = pImage1;
+    }
+
+    public String getpImage2() {
+        return pImage2;
+    }
+
+    public void setpImage2(String pImage2) {
+        this.pImage2 = pImage2;
+    }
+
+    public String getpImage3() {
+        return pImage3;
+    }
+
+    public void setpImage3(String pImage3) {
+        this.pImage3 = pImage3;
+    }
+
+    public String getpCoverProduct() {
+        return pCoverProduct;
+    }
+
+    public void setpCoverProduct(String pCoverProduct) {
+        this.pCoverProduct = pCoverProduct;
+    }
+    
 }

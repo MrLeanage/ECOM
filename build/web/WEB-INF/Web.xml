@@ -29,6 +29,10 @@
     <servlet-mapping>
         <servlet-name>ProductViewControllerServlet</servlet-name>
         <url-pattern>/Product</url-pattern>
+        <url-pattern>/Product/Edit</url-pattern>
+        <url-pattern>/Product/Add</url-pattern>
+        <url-pattern>/Product/Update</url-pattern>
+        <url-pattern>/Product/Delete</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AllMaterialControllerServlet</servlet-name>

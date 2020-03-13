@@ -32,34 +32,35 @@ public class ProductViewControllerServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
+                
             try {
 
-            String action = " ";
-            
+            String action = request.getServletPath();
+                log("Hello"+action);
+                    
             switch (action) {
-            case "add":
+            case "/Product/Add":
                 try {
                     insertProduct(request, response);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 break;
-            case "edit":
+            case "/Product/Edit":
                 try {
-
+                    setUpdateProduct(request, response);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 break;
-            case "update":
+            case "/Product/Update":
                 try {
                     updateProduct(request, response);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 break;
-            case "delete":
+            case "/Product/Delete":
                 try {
                     deleteProduct(request, response);
                 } catch (Exception ex) {
@@ -123,20 +124,19 @@ public class ProductViewControllerServlet extends HttpServlet {
 	private void insertProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Product productModel = new Product();
         ProductService productService = new ProductService();
-        productModel.setpName(request.getParameter("name"));
-        productModel.setpDescription(request.getParameter("description"));
-        productModel.setpDimention(request.getParameter("dimention"));
-        productModel.setpWeight(request.getParameter("weight"));
-        productModel.setpColor(request.getParameter("color"));
-        productModel.setpMaterial(request.getParameter("material"));
-        productModel.setpAvailability(request.getParameter("status"));
-        productModel.setpCustomize(request.getParameter("customize"));
-
+        productModel.setpName(request.getParameter("pName"));
+        productModel.setpDescription(request.getParameter("pDescription"));
+        productModel.setpDimention(request.getParameter("pDimention"));
+        productModel.setpWeight(request.getParameter("pWeight"));
+        productModel.setpColor(request.getParameter("pColor"));
+        productModel.setpMaterial(request.getParameter("pMaterial"));
+        productModel.setpAvailability(request.getParameter("pAvailability"));
+        productModel.setpCustomize(request.getParameter("pCustomize"));
         boolean resultval = productService.insertData(productModel);
         if (resultval) {
-            response.sendRedirect(request.getContextPath() + "/product.jsp");
+            response.sendRedirect(request.getContextPath() + "/Product");
         } else {
-            response.sendRedirect(request.getContextPath() + "/Admin/error404.jsp");
+            error404(request, response);
         }
     }
 
@@ -155,13 +155,28 @@ public class ProductViewControllerServlet extends HttpServlet {
 
     }
 
-    private void setUpdateMaterial(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        int ID = Integer.parseInt(request.getParameter("ID"));
+    private void setUpdateProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        
         ProductService productService = new ProductService();
-        ArrayList<Product> product = productService.selectProduct(ID);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("../Admin/product.jsp");
-        request.setAttribute("productEdit", product);
-        dispatcher.forward(request, response);
+        
+        Product product = new Product();
+        product = productService.selectProduct(request.getParameter("actionID"));
+        request.setAttribute("pID", product.getpID());
+        getServletContext().setAttribute("pName", product.getpName());
+        request.setAttribute("pDescription", product.getpDescription());
+        request.setAttribute("pDimention", product.getpDimention());
+        request.setAttribute("pWeight", product.getpWeight());
+        request.setAttribute("pColor", product.getpColor());
+        request.setAttribute("pMaterial", product.getpMaterial());
+        request.setAttribute("pAvailability", product.getpAvailability());
+        request.setAttribute("pCustomize", product.getpCustomize());
+        request.setAttribute("pPrice", product.getpPrice());
+        request.setAttribute("pImage1", product.getpImage1());
+        request.setAttribute("pImage2", product.getpImage2());
+        request.setAttribute("pImage3", product.getpImage3());
+        request.setAttribute("pCoverProduct", product.getpCoverProduct());
+        log("Executed to end"+product.getpName());
+        request.getRequestDispatcher("/Product").forward(request, response);
     }
 
     private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -169,26 +184,35 @@ public class ProductViewControllerServlet extends HttpServlet {
         Product productModel = new Product();
 
         ProductService productService = new ProductService();
-        productModel.setpID(request.getParameter("ID"));
-        productModel.setpName(request.getParameter("name"));
-        productModel.setpDescription(request.getParameter("description"));
-        productModel.setpDimention(request.getParameter("dimention"));
-        productModel.setpWeight(request.getParameter("weight"));
-        productModel.setpColor(request.getParameter("color"));
-        productModel.setpMaterial(request.getParameter("material"));
-        productModel.setpAvailability(request.getParameter("status"));
-        productModel.setpCustomize(request.getParameter("customize"));
-
+        productModel.setpID(request.getParameter("selectionID"));
+        productModel.setpName(request.getParameter("pName"));
+        productModel.setpDescription(request.getParameter("pDescription"));
+        productModel.setpDimention(request.getParameter("pDimention"));
+        productModel.setpWeight(request.getParameter("pWeight"));
+        productModel.setpColor(request.getParameter("pColor"));
+        productModel.setpMaterial(request.getParameter("pMaterial"));
+        productModel.setpAvailability(request.getParameter("pAvailability"));
+        productModel.setpCustomize(request.getParameter("pCustomize"));
+        
         productService.updateData(productModel);
-        response.sendRedirect(request.getContextPath() + "/Admin/product.jsp");
+        response.sendRedirect(request.getContextPath() + "/Product");
 
     }
 
     private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-        String id = request.getParameter("ID");
+        
+        System.out.println("this is delete "+request.getParameter("addButton"));
         ProductService productService = new ProductService();
-        productService.deleteData(id);
-        response.sendRedirect(request.getContextPath() + "/Admin/product.jsp");
+        Boolean resultVal = productService.deleteData(request.getParameter("actionID"));
+        if(resultVal){
+            response.sendRedirect(request.getContextPath() + "/Product");
+        }else{
+            response.sendRedirect(request.getContextPath() + "/Admin/error404.jsp");
+        }
+        
+    }
+    private void error404(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect(request.getContextPath() + "/Admin/error404.jsp");
     }
 }
 

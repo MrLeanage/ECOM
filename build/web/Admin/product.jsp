@@ -67,7 +67,7 @@
                         <h5>Data table</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <table class="table table-bordered data-table">
+                        <table id="productTable" class="table table-bordered data-table">
                             <thead>
                             <tr>
                                 <th>ID</th>
@@ -76,6 +76,8 @@
                                 <th>Dimension</th>
                                 <th>Weight</th>
                                 <th>Description</th>
+                                <th>Colors</th>
+                                <th>Material</th>
                                 <th>Customize</th>
                                 <th>Availability</th>
                                 <th>Action</th>
@@ -88,22 +90,24 @@
                                 %>
                             <tr class="gradeX">
                                 <td><%=products.getpID()%></td>
-                                <td><img src = "<%=request.getContextPath()%>/Admin/img/gallery/imgbox3.jpg" height="100" width="100" ><div class="actions"> <a title="" href="#"><i class="icon-pencil"></i></a> <a class="lightbox_trigger" href="img/gallery/imgbox3.jpg"><i class="icon-search"></i></a> </div>
+                                <td><img src = "${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg" height="50" width="50" ><div class="actions"> <a class="lightbox_trigger" href="${pageContext.request.contextPath}/img/gallery/imgbox3.jpg"><i class="icon-search"></i></a> </div>
                                 </td>
                                 <td><%=products.getpName()%></td>
                                 <td><%=products.getpDimention()%></td>
                                 <td><%=products.getpWeight()%></td>
                                 <td><%=products.getpDescription()%></td>
-                                <td class="right"><%=products.getpCustomize()%></td>
-                                <td class="right"><%=products.getpAvailability()%></td>
+                                <td><%=products.getpColor()%></td>
+                                <td><%=products.getpMaterial()%></td>
+                                <td ><%=products.getpCustomize()%></td>
+                                <td ><%=products.getpAvailability()%></td>
                                 <td>
                                     <div class="btn-group">
-                                        <button class="btn btn-primary">Action</button>
+                                        <button class="btn btn-primary" >Action</button>
                                         <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">Update</a></li>
+                                            <li ><a href="<%=request.getContextPath()%>/Product/Edit?actionID=<%=products.getpID()%>" name="action" >Edit</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="#">Delete</a></li>
+                                            <li><a href="<%=request.getContextPath()%>/Product/Delete?actionID=<%=products.getpID()%>" name="action"  >Delete</a></li>
                                         </ul>
                                     </div>
                                 </td>
@@ -119,35 +123,36 @@
                         <h5>Form Elements</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form action="<%=request.getContextPath()%>/Product" method="post" class="form-horizontal">
+                        <form action="<%=request.getContextPath()%>/<%%>Product/Update" id="productForm" method="post" class="form-horizontal">
                             <div class="control-group">
                                 <label class="control-label">Product Name</label>
                                 <div class="controls">
-                                    <input type="text" name="name" id="name"  style="width: 90%">
+                                    <input type="text" name="pName" id="name" value="<%=(request.getParameter("pName") == null) ? request.getParameter("pName") : ""%>" style="width: 90%">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Product Dimension</label>
                                 <div class="controls">
-                                    <input type="text" name="dimention" id="dimension" style="width: 90%">
+                                    <input type="text" name="pDimention" id="dimention" value="<%=(request.getParameter("pDimention") != null) ? request.getParameter("pDimention") : ""%>" style="width: 90%">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Product Weight</label>
                                 <div class="controls">
-                                    <input type="text" name="weight" id="weight" style="width: 90%">
+                                    <input type="text" name="pWeight" id="weight" value="<%=(request.getParameter("pWeight") != null) ? request.getParameter("pWeight") : ""%>" style="width: 90%">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Item Product Description</label>
                                 <div class="controls">
-                                    <textarea name="description" id="description" class="span11" style="width: 90%"></textarea>
+                                    <textarea name="pDescription" id="description" class="span11" style="width: 90%"><%=(request.getParameter("pDescription") != null) ? request.getParameter("pDescription") : ""%></textarea>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Customizable?</label>
                                 <div class="controls">
-                                    <select name='customize' >
+                                    <select name='pCustomize' id="customize">
+                                        <option value="<%=(request.getParameter("pCustomize") != null) ? request.getParameter("pCustomize") : ""%>"></option>
                                         <option selected >Yes</option>
                                         <option >No</option>
                                     </select>
@@ -156,19 +161,20 @@
                             <div class="control-group">
                                 <label class="control-label">Select Available Colors</label>
                                 <div class="controls">
-                                    <input type="text" name="color" id="name" style="width: 90%">
+                                    <input type="text" name="pColor" id="color" value="<%=(request.getParameter("pColor") != null) ? request.getParameter("pColor") : ""%>" style="width: 90%">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Select Available Materials</label>
                                 <div class="controls">
-                                    <input type="text" name="material" id="name" style="width: 90%">
+                                    <input type="text" name="pMaterial" id="material" value="<%=(request.getParameter("pMaterial") != null) ? request.getParameter("pMaterial") : ""%>" style="width: 90%">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Set Availability Status</label>
                                 <div class="controls">
-                                    <select name='status'>
+                                    <select name='pAvailability' id="status">
+                                        <option ><%=(request.getParameter("pAvailability") != null) ? request.getParameter("pAvailability") : ""%></option>
                                         <option>Available</option>
                                         <option>Out of Order</option>
                                         <option>Not Available</option>
@@ -178,15 +184,20 @@
                             <div class="control-group">
                                 <label class="control-label">Select Images(max 5) :</label>
                                 <div class="controls">
-                                    <input type="file" name='image1' />
-                                    <input type="file" name='image2' />
-                                    <input type="file" name='image3' />
-                                    <input type="file" name='image4' />
-                                    <input type="file" name='image5' />
+                                    <input type="file" name='pImage1' />
+                                    <input type="file" name='pImage2' />
+                                    <input type="file" name='pImage3' />
                                 </div>
                             </div>
                             <div class="form-actions">
-                                <button type="submit" name='action' value='add' class="btn btn-success">Save</button>
+                                
+                               <input type="text" name="selectionID" id="selectionID">
+                               
+                               <button type="submit" class="btn btn-success"  id="addButton">Add</button>
+                               
+                              
+                                
+                                                                
                             </div>
                         </form>
                     </div>
@@ -201,6 +212,33 @@
     <div id="footer" class="span12"> PYRAMID 3D SOLUTIONS &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved.<br>Powered by <i class="fa fa-circle" aria-hidden="true"></i> by <a href="https://devzone.lk/index-1" target="_blank">DevZone LK</a> </div>
 </div>
 <!--end-Footer-part-->
+
+
+<script>
+    var table = document.getElementById("productTable"),rIndex;
+    
+    for(var i = 0; i < table.rows.length; i++){
+        table.rows[i].onclick = function()
+        {
+            rIndex = this.rowIndex;
+            document.getElementById("name").value =  this.cells[2].innerHTML;
+            document.getElementById("dimention").value =  this.cells[3].innerHTML;
+            document.getElementById("weight").value =  this.cells[4].innerHTML;
+            document.getElementById("description").value =  this.cells[5].innerHTML;
+            document.getElementById("color").value =  this.cells[6].innerHTML;
+            document.getElementById("material").value =  this.cells[7].innerHTML;
+            document.getElementById("customize").value =  this.cells[8].innerHTML;
+            document.getElementById("status").value =  this.cells[9].innerHTML;
+            document.getElementById("selectionID").value = this.cells[0].innerHTML;
+           // $("#addButton").html("Update");
+           $("#addButton").attr("value", "Update").html("Update")
+           
+           
+        }
+    }
+    
+</script>
+
 <%@include file="includes/script.jsp" %>
 </body>
 </html>
