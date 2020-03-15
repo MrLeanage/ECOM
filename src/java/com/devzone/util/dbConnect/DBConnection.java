@@ -16,9 +16,9 @@ public class DBConnection {
 
 
         try {
-            String url = "jdbc:mysql://localhost:3306/ecom?useSSL=false";
+            String url = "jdbc:mysql://localhost:3306/ecom";
             String user = "root";
-            String password = "uthpala";
+            String password = "";
             
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection(url, user, password);
