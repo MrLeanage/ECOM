@@ -1,3 +1,4 @@
+<%@page import="java.io.OutputStream"%>
 <%
     if (null != session.getAttribute("authenticatedUser")) {
         if (session.getAttribute("authenticatedUser").toString().equals(false)) {
@@ -93,7 +94,7 @@
                                         %>
                                         <tr class="gradeX" style="cursor:pointer; ">
                                             <td><%=products.getpID()%></td>
-                                            <td><img src = "${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg" height="50" width="50" ><div class="actions"> <a class="lightbox_trigger" href="${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg"><i class="icon-search"></i></a> </div>
+                                            <td><img alt="image" src = "data:image/jpg;base64,<%=products.getpImage1()%>" height="50" width="50" ><div class="actions"> <a class="lightbox_trigger" href="${pageContext.request.contextPath}/Admin/img/gallery/imgbox3.jpg"><i class="icon-search"></i></a> </div>
                                             </td>
                                             <td><%=products.getpName()%></td>
                                             <td><%=products.getpDimention()%></td>
@@ -189,16 +190,16 @@
                                         <label class="control-label">Select Images(max 3) :</label>
                                         <div class="controls">
                                             <label >Cover Image</label>
-                                            <input type="file"  name='pImage1' accept="image/png" required>
-                                            <input type="file"  name='pImage2' accept="image/png" required>
-                                            <input type="file" name='pImage3' accept="image/png" required>
+                                            <input type="file"  name='pImage1'  size="50" required>
+                                            <input type="file"  name='pImage2'  size="50" required>
+                                            <input type="file" name='pImage3' size="50" required>
                                         </div>
                                     </div>
                                     <div class="form-actions">
 
                                         <input type="hidden" name="selectionID" id="selectionID">
 
-                                        <button type="submit" class="btn btn-success" name="actionButton" value="" id="actionButton">Add</button>
+                                        <button type="submit" class="btn btn-success" name="actionButton" value="Save" id="actionButton">Add</button>
 
                                     </div>
                                 </form>

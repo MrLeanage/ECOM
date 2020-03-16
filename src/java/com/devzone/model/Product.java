@@ -1,6 +1,7 @@
 package com.devzone.model;
 
 import com.devzone.util.utility.UtilityMethod;
+import java.io.InputStream;
 
 public class Product {
     private String pID = null;

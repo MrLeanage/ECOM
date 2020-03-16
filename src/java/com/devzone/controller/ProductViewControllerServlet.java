@@ -7,6 +7,7 @@ package com.devzone.controller;
 
 import com.devzone.model.Product;
 import com.devzone.services.ProductService;
+import com.devzone.util.utility.UtilityMethod;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-@MultipartConfig
+@MultipartConfig(maxFileSize =169999999)
 public class ProductViewControllerServlet extends HttpServlet {
 
     /**
@@ -69,10 +70,16 @@ public class ProductViewControllerServlet extends HttpServlet {
                         } catch (Exception ex) {
 
                         }
+                    case "/Product":
+                        try {
+                            loadProduct(request, response);
+                        } catch (Exception ex) {
+
+                        }
                     default:
                         //list redirect
                         try {
-                            loadProduct(request, response);
+                            error404(request, response);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -137,59 +144,30 @@ public class ProductViewControllerServlet extends HttpServlet {
             productModel.setpMaterial(request.getParameter("pMaterial"));
             productModel.setpAvailability(request.getParameter("pAvailability"));
             productModel.setpCustomize(request.getParameter("pCustomize"));
-            //productModel.setpHomeProduct(request.getParameter("pHomeProduct"));
-            log("image file paths" + request.getParameter("pHomeProduct"));
-
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
-            productModel.setpImage1(sdf.format(timestamp).concat("_1.png"));
-            productModel.setpImage2(sdf.format(timestamp).concat("_2.png"));
-            productModel.setpImage3(sdf.format(timestamp).concat("_3.png"));
-
             Part filePart1 = request.getPart("pImage1");
             Part filePart2 = request.getPart("pImage2");
             Part filePart3 = request.getPart("pImage3");
-
+            
+           // productModel.setpImage1(UtilityMethod.convertPartToByte(filePart1));
+           // productModel.setpImage2(UtilityMethod.convertPartToByte(filePart2));
+           // productModel.setpImage3(UtilityMethod.convertPartToByte(filePart3));
+            
+            
+            
+            
+            
+            log("image file paths" + request.getParameter("pHomeProduct"));
+            
             boolean resultval = productService.insertData(productModel);
             if (resultval) {
-
-                for (int i = 1; i <= 3; i++) {
-                    switch (i) {
-                        case 1:
-                            InputStream inputStream1 = filePart1.getInputStream();
-                            OutputStream output1 = new FileOutputStream("C:\\Users\\RED-HAWK\\Documents\\GitHub Projects\\" + sdf.format(timestamp) + "_" + 1 + ".png");
-                            byte[] buffer1 = new byte[1024];
-                            while (inputStream1.read(buffer1) > 0) {
-                                output1.write(buffer1);
-                            }
-                            break;
-                        case 2:
-                            InputStream inputStream2 = filePart2.getInputStream();
-                            OutputStream output2 = new FileOutputStream("C:\\Users\\RED-HAWK\\Documents\\GitHub Projects\\" + sdf.format(timestamp) + "_" + 2 + ".png");
-                            byte[] buffer2 = new byte[1024];
-                            while (inputStream2.read(buffer2) > 0) {
-                                output2.write(buffer2);
-                            }
-                            break;
-                        case 3:
-                            InputStream inputStream3 = filePart3.getInputStream();
-                            OutputStream output3 = new FileOutputStream("C:\\Users\\RED-HAWK\\Documents\\GitHub Projects\\" + sdf.format(timestamp) + "_" + 3 + ".png");
-                            byte[] buffer3 = new byte[1024];
-                            while (inputStream3.read(buffer3) > 0) {
-                                output3.write(buffer3);
-                            }
-                            break;
-                    }
-
-                }
-
+                
                 response.sendRedirect(request.getContextPath() + "/Product");
             } else {
                 error404(request, response);
             }
         } catch (Exception e) {
             System.out.println(e);
+            error404(request, response);
         }
     }
 

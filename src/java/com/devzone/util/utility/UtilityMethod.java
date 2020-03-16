@@ -10,6 +10,10 @@ import org.apache.commons.io.IOUtils;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.sql.Blob;
+import java.sql.SQLException;
+import java.util.Base64;
+import javax.servlet.http.Part;
 
 public class UtilityMethod {
     public static String addPrefix(String prefix, String id){
@@ -93,6 +97,7 @@ public class UtilityMethod {
         imageView.setImage(image);
         return imageView;
     }
+    
     public static InputStream convertImageToInputStream(ImageView imageView) throws IOException {
         Image image = imageView.getImage();
 
@@ -103,5 +108,33 @@ public class UtilityMethod {
         InputStream fileInputStream = new ByteArrayInputStream(outputStream.toByteArray());
         return fileInputStream;
     }
-
+    public static byte[] convertPartToByte(Part part) throws IOException {
+        InputStream inputStream = null;
+        inputStream = part.getInputStream();
+        byte[] byteArray = IOUtils.toByteArray(inputStream);
+        return byteArray;
+    }
+    public static String base64Image(Blob blob) throws SQLException{
+        String base64Image = null;
+        try{
+            InputStream inputStream = blob.getBinaryStream();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            byte[] buffer = new byte[4096];
+            int bytesRead = -1;
+                 
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);                  
+            }
+                 
+            byte[] imageBytes = outputStream.toByteArray();
+            base64Image = Base64.getEncoder().encodeToString(imageBytes);
+                 
+                 
+            inputStream.close();
+            outputStream.close();
+        }catch(IOException ex){
+            
+        }
+        return base64Image;
+    }
 }
