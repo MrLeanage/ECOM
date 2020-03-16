@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>ECOM-CLIENT</display-name>
+    <!--Servlets-->
+    
+    <servlet>
+        <servlet-name>OrderControllerServlet</servlet-name>
+        <servlet-class>com.devzone.controller.OrderControllerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductViewControllerServlet1</servlet-name>
+        <servlet-class>com.devzone.controller.ProductViewControllerServlet1</servlet-class>
+    </servlet>
+    <!--Servlet Mapping -->
+    
+    <servlet-mapping>
+        <servlet-name>ProductViewControllerServlet1</servlet-name>
+        <url-pattern>/Home</url-pattern>
+        <url-pattern>/Products</url-pattern>
+        <url-pattern>/Product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderControllerServlet</servlet-name>
+        <url-pattern>/Order</url-pattern>
+        <url-pattern>/Order/ProcessToCheckout</url-pattern>
+        <url-pattern>/Order/Check</url-pattern>
+        <url-pattern>/Order/TrackOrder</url-pattern>
+        <url-pattern>/Order/TrackLogin</url-pattern>
+    </servlet-mapping>
+    <!--Welcome Files-->
+    <welcome-file-list>
+        <welcome-file>Home</welcome-file>
+    </welcome-file-list>
+    
+    <error-page>
+    	<location>/Home</location>
+    </error-page>
+</web-app>
