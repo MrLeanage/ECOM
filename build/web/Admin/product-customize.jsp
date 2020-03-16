@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: dulshan
@@ -5,6 +6,16 @@
   Time: 1:51 AM
   To change this template use File | Settings | File Templates.
 --%>
+
+<%
+    if (null != session.getAttribute("authenticatedUser")) {
+        if (session.getAttribute("authenticatedUser").toString().equals(false)) {
+            response.sendRedirect(request.getContextPath() + "/Login");
+        }
+    } else {
+        response.sendRedirect(request.getContextPath() + "/Login");
+    }
+%>
 <%@page import="java.util.Date"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
