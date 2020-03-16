@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: dulshan
@@ -6,6 +7,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 
+
+
+<%
+    if (null != session.getAttribute("authenticatedUser")) {
+        if (session.getAttribute("authenticatedUser").toString().equals(false)) {
+            response.sendRedirect(request.getContextPath() + "/Login");
+        }
+    } else {
+        response.sendRedirect(request.getContextPath() + "/Login");
+    }
+%>
 <%@page import="com.devzone.model.Order"%>
 <%@page import="com.devzone.model.Product"%>
 <%@page import="java.util.ArrayList"%>
