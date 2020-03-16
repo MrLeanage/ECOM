@@ -5,6 +5,9 @@
   Time: 1:51 AM
   To change this template use File | Settings | File Templates.
 --%>
+<%@page import="java.util.Date"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,21 +25,28 @@
 
 <!--top-Header-menu-->
 <div id="user-nav" class="navbar navbar-inverse">
-    <ul class="nav">
-        <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome User</span><b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a href=""><i class=""></i> </a></li>
-                <li class="divider"></li>
-                <li><a href="<%=request.getContextPath()%>/Login"><i class="icon-key"></i> Log Out</a></li>
-            </ul>
+    <ul>
+        <li class="active"><a href="${pageContext.request.contextPath}/Order"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+        <li ><a href="${pageContext.request.contextPath}/Product"><i class="icon-shopping-cart"></i> <span>Products</span></a> </li>
+        <li ><a ><i class="icon icon-list"></i> <span>Portfolio Customization<br>(feature Disabled)</span></a> </li>
+        <li ><a ><i class="icon-globe"></i> <span>Track Order<br>(feature Disabled)</span></a> </li>
+        <li ><a ><i class="icon-globe"></i> <span>Completed Orders<br>(feature Disabled)</span></a> </li>
+        <li class="content"> <span>Disk Space Usage</span>
+            <div class="progress progress-mini active progress-striped">
+                <div style="width: 87%;" class="bar"></div>
+            </div>
+            <span class="percent" ><fmt:formatNumber type = "number" maxIntegerDigits = "3" value = "${(usage/2)*100}" />%</span>
+            <div class="stat"> <fmt:formatNumber type = "number" maxIntegerDigits = "3" value = "${usage}" />/ 2 GB</div>
         </li>
-        <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i></a></li>
-                <li class="divider"></li>
-                <li><a class="sInbox" title="" href="<%=request.getContextPath()%>/Order"><i class="icon-envelope"></i> New Orders</a></li>
-            </ul>
+        <li class="content"> <span>Local Time</span>
+            <% 
+            Date date = new Date();
+            %>
+            
+            <div class="stat"><%=date.toString()%></div>
         </li>
+        <li ><a href="${pageContext.request.contextPath}/Order"><i class="icon-globe"></i> <span>System Updates<br>(Not Available)</span></a> </li>
+
     </ul>
 </div>
 <!--close-top-Header-menu-->

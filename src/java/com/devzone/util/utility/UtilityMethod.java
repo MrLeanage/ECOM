@@ -103,5 +103,17 @@ public class UtilityMethod {
         InputStream fileInputStream = new ByteArrayInputStream(outputStream.toByteArray());
         return fileInputStream;
     }
-
+    public static double getDiskSpaceSize(){
+        double size = 0;
+        try{ 
+            File file = new File("E:\\"); 
+          
+            size = file.getFreeSpace() / (1024.0 * 1024 * 1024); 
+                 
+            }catch(Exception ex){
+                
+            }
+        //return size - 43;
+        return 0;
+    }
 }

@@ -8,6 +8,9 @@
 
 <%@page import="com.devzone.model.Product"%>
 <%@page import="java.util.ArrayList" %>
+<%@page import="java.util.Date"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -49,9 +52,27 @@
 
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Admin Dashboard</a>
     <ul>
-        <li ><a href="<%=request.getContextPath()%>/Order"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
-        <li class="active"><a href="<%=request.getContextPath()%>/Product"><i class="icon icon-home"></i> <span>Products</span></a> </li>
-        <li ><a href="<%=request.getContextPath()%>/Portfolio"><i class="icon icon-home"></i> <span>Portfolio Customization</span></a> </li>
+        <li ><a href="${pageContext.request.contextPath}/Order"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+        <li class="active"><a href="${pageContext.request.contextPath}/Product"><i class="icon-shopping-cart"></i> <span>Products</span></a> </li>
+        <li ><a ><i class="icon icon-list"></i> <span>Portfolio Customization<br>(feature Disabled)</span></a> </li>
+        <li ><a ><i class="icon-globe"></i> <span>Track Order<br>(feature Disabled)</span></a> </li>
+        <li ><a ><i class="icon-globe"></i> <span>Completed Orders<br>(feature Disabled)</span></a> </li>
+        <li class="content"> <span>Disk Space Usage</span>
+            <div class="progress progress-mini active progress-striped">
+                <div style="width: 87%;" class="bar"></div>
+            </div>
+            <span class="percent" ><fmt:formatNumber type = "number" maxIntegerDigits = "3" value = "${(usage/2)*100}" />%</span>
+            <div class="stat"> <fmt:formatNumber type = "number" maxIntegerDigits = "3" value = "${usage}" />/ 2 GB</div>
+        </li>
+        <li class="content"> <span>Local Time</span>
+            <% 
+            Date date = new Date();
+            %>
+            
+            <div class="stat"><%=date.toString()%></div>
+        </li>
+        <li ><a href="${pageContext.request.contextPath}/Order"><i class="icon-globe"></i> <span>System Updates<br>(Not Available)</span></a> </li>
+
     </ul>
 </div>
 <div id="content">

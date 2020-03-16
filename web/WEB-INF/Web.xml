@@ -27,6 +27,8 @@
     <servlet-mapping>
         <servlet-name>OrderViewControllerServlet</servlet-name>
         <url-pattern>/Order</url-pattern>
+        <url-pattern>/Order/OrderInfo</url-pattern>\
+        <url-pattern>/Order/FormAction</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProductViewControllerServlet</servlet-name>
@@ -40,7 +42,7 @@
     </servlet-mapping>
     <!--Welcome Files-->
     <welcome-file-list>
-        <welcome-file>/index.jsp</welcome-file>
+        <welcome-file>Login</welcome-file>
     </welcome-file-list>
     <error-page>
         <location>/Client/ShoppingList</location>

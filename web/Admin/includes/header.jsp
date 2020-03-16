@@ -12,7 +12,7 @@
                 <li class="divider"></li>
                 <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
                 <li class="divider"></li>
-                <li><a href="<%=request.getContextPath()%>/Admin.login.jsp"><i class="icon-key"></i> Log Out</a></li>
+                <li><a href="${pageContext.request.contextPath}/Login"><i class="icon-key"></i> Log Out</a></li>
             </ul>
         </li>
         <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>

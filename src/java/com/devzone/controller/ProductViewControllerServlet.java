@@ -6,6 +6,7 @@
 package com.devzone.controller;
 import com.devzone.model.Product;
 import com.devzone.services.ProductService;
+import com.devzone.util.utility.UtilityMethod;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -145,7 +146,9 @@ public class ProductViewControllerServlet extends HttpServlet {
         ProductService productService = new ProductService();
         productList = productService.loadData();
         try {
+            double size = UtilityMethod.getDiskSpaceSize();
             
+            request.setAttribute("usage", size);
             request.setAttribute("productList", productList);
             request.getRequestDispatcher("/Admin/product.jsp").forward(request, response);
 
